@@ -2,7 +2,8 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/
 
 import "./appbar.js";
 import "./IocnButton.js";
-import "./login.js"
+import "./login.js";
+import "./photos.js";
 
 // app-root compoment
 class App extends LitElement{
@@ -11,6 +12,7 @@ class App extends LitElement{
     return html`
       <app-topbar></app-topbar>
       <login-dialog></login-dialog>
+      <photos-grid></photos-grid>
     `;
   }
 }

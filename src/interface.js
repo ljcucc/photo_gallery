@@ -6,11 +6,7 @@ function interfaces(app) {
     })
   })
 
-  app.post("/api/login", {
-    method: "POSt",
-    mode: "cors",
-    body: { email, password }
-  }, (req, res) => {
+  app.post("/api/login", (req, res) => {
   });
 }
 
