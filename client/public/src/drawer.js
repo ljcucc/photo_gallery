@@ -8,7 +8,7 @@ class AppDrawer extends LitElement{
       type: Boolean,
       reflect: true
     },
-    _close: {
+    show: {
       type: Boolean,
     }
   }
@@ -26,44 +26,43 @@ class AppDrawer extends LitElement{
       left:0;
       right:0;
       bottom:0;
-      background:rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
+      transition: all 0.35s;
+      background: rgba(0,0,0,0);
+      backdrop-filter: blur(0px);
       display: none;
     }
 
     .drawer-container.open{
-      display:block;
-      animation-name: open_bg;
-      animation-duration: 0.35s;
-      animation-iteration-count: 1;
-      animation-direction: normal;
-
-      -webkit-animation-name: open_bg;
-      -webkit-animation-duration: 0.35s;
-      -webkit-animation-iteration-count: 1;
-      -webkit-animation-direction: normal;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background:rgba(0,0,0,.35);
     }
 
     .drawer-container.close{
-      transition: all 0.35s;
-      background: rgba(0,0,0,0);
-      backdrop-filter: blur(0px);
     }
 
     .drawer{
       background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      left:0;
+      left:0px;
+      margin-left: -500px;
       top:0;
       bottom:0;
       width: 500px;
       height: 100vh;
-      display: none;
+      /* display: none; */
+
+      transition: all 0.35s;
+    }
+
+    .show{
+      display: block;
     }
 
     .drawer.open{
-      display:block;
+      margin-left: 0;
+      /* display:block;
       animation-name: open_drawer;
       animation-duration: 0.35s;
       animation-iteration-count: 1;
@@ -72,57 +71,28 @@ class AppDrawer extends LitElement{
       -webkit-animation-name: open_drawer;
       -webkit-animation-duration: 0.35s;
       -webkit-animation-iteration-count: 1;
-      -webkit-animation-direction: normal;
-    }
-
-    .drawer.close{
-      transition: all 0.35s;
-      margin-left: -500px;
-    }
-
-    @keyframes open_drawer{
-      from {
-        margin-left: -500px;
-      }
-
-      to {
-        margin-left:0;
-      }
-    }
-
-    @keyframes open_bg{
-      from {
-        background: rgba(0,0,0,0);
-        backdrop-filter: blur(0px);
-      }
-
-      to {
-        background: rgba(0,0,0,0.35);
-        backdrop-filter: blur(10px);
-      }
+      -webkit-animation-direction: normal; */
     }
   `;
 
   openDrawer(){
-    this.open = true;
-    console.log("open")
+    this.show = true;
+    setTimeout(()=>{
+      this.open = true;
+    }, 10);
   }
 
   closeDrawer(){
-    // this.open = false;
-    this._close = true;
-    console.log("close")
-
+    this.open = false;
     setTimeout(()=>{
-      this._close = false;
-      this.open = false;
+      this.show = false;
     }, 360);
   }
 
   render(){
     return html`
-    <div @click="${this.closeDrawer}" class="${classMap({'drawer-container':true, 'open': this.open, 'close': this._close})}">
-      <div class="${classMap({'drawer': true, 'open': this.open, 'close': this._close})}"></div>
+    <div @click="${this.closeDrawer}" class="${classMap({'drawer-container':true, 'open': this.open, 'show': this.show})}">
+      <div class="${classMap({'drawer': true, 'open': this.open, 'show': this.show})}"></div>
     </div>
     `;
   }
