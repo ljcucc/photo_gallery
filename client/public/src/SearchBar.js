@@ -46,8 +46,8 @@ class SearchBar extends LitElement{
       justify-content: right;
     }
 
-    .search-icon.toggled{
-      /* padding-left: calc(70vw - 50vw); */
+    .close-icon.toggled{
+      padding-left: 10vmin;
     }
 
     @media only screen and (max-width: 800px){
@@ -61,7 +61,7 @@ class SearchBar extends LitElement{
         background-color: white;
       }
 
-      .search-icon.toggled{
+      .close-icon.toggled{
         padding-left: 0vmin;
       }
     }
@@ -87,7 +87,7 @@ class SearchBar extends LitElement{
     this.toggled = true;
     setTimeout(() => {
       this.inputWidth = "100%";
-    }, 100);
+    }, 10);
   }
 
   closeSearch(){
@@ -102,18 +102,21 @@ class SearchBar extends LitElement{
       <div class="search-bar ${classMap({
           toggled: this.toggled
         })}">
+        <icon-button class="close-icon ${
+          classMap({
+            toggled: this.toggled
+          })}" style="${styleMap({
+          display: this.toggled? "": "none"
+        })}" name="close" @click="${this.closeSearch}"></icon-button>
+        <input type="text" placeholder="Places, People, Things... " style="${styleMap({
+          width: this.inputWidth,
+          display: this.toggled? "": "none"
+        })}" required/>
         <icon-button name="search" @click="${this.openSearch}" class="search-icon ${
           classMap({
             toggled: this.toggled
           })
         }"></icon-button>
-        <input type="text" placeholder="Places, People, Things... " style="${styleMap({
-          width: this.inputWidth,
-          display: this.toggled? "": "none"
-        })}"/>
-        <icon-button style="${styleMap({
-          display: this.toggled? "": "none"
-        })}" name="close" @click="${this.closeSearch}"></icon-button>
       </div>
     `;
   }
