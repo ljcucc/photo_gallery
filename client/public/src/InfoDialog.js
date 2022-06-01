@@ -30,6 +30,7 @@ class InfoDialog extends LitElement{
   `;
 
   updated(){
+    console.log(this.open)
     if(!this.open) return;
     let root = this.shadowRoot; // get shadow root in order to get DOM
     console.log("open me")
