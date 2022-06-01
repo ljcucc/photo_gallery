@@ -1,0 +1,22 @@
+{
+  "short_name": "Photos",
+  "name": "ljcucc Photos app",
+  "icons": [
+    {
+      "src": "/assets/icon-512.png",
+      "type":"image/png",
+      "sizes":"512x512"
+    },
+    {
+      "src": "/assets/icon-192.png",
+      "type":"image/png",
+      "sizes":"192x192"
+    }
+  ],
+  "scope": "/",
+  "start_url": "/?source=pwa",
+  "background_color": "white",
+  "display": "standalone",
+  "theme_color": "black",
+  "description": "A photo demo app"
+}
