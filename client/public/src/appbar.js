@@ -1,3 +1,10 @@
+/*
+
+  appbar.js
+
+  This is a TopBar Component used to display actions and items that user can access.
+
+*/
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 
 import "./icons.js";
@@ -18,7 +25,7 @@ class Appbar extends LitElement{
       top: 0;
       left: 0;
       right: 0;
-      position: fixed;
+      position: sticky;
 
       border-bottom: 1px solid rgba(0, 0, 0, 0.35);
       background: rgba(255,255,255, 0.75);

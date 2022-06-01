@@ -29,10 +29,35 @@ class PhotosGrid extends LitElement{
     grid-template-rows: var(--grid);
     box-sizing: content-box;
     gap: 10px;
-    padding-top: 100px;
+    padding: 6px;
     margin: auto;
     justify-content: center;
     box-sizing: content-box;
+  }
+
+  .more{
+    width: 100%;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .more>button{
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-radius: 8px;
+    padding: 16px 24px;
+
+    transition: all 0.35s;
+  }
+
+  .more>button:hover{
+    background:rgba(0,0,0,.15);
   }
 
   .box:hover{
@@ -85,7 +110,9 @@ class PhotosGrid extends LitElement{
         html`<img class="box" src="https://picsum.photos/seed/${item+200}/200?grayscale"/>`
       )}
     </div>
-    <button @click="${this.loadPage}">load more</button>
+    <div class="more">
+      <button @click="${this.loadPage}">load more</button>
+    </div>
     `;
   }
 

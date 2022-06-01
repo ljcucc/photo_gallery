@@ -52,3 +52,7 @@ button{
 button.horz{
   margin: 0 8px;
 }
+
+body{
+  margin: 0;
+}
