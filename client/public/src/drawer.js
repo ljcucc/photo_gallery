@@ -20,6 +20,11 @@ class AppDrawer extends LitElement{
   }
 
   static styles = css`
+
+    :host{
+      --drawer-width: 80vmin;
+    }
+
     .drawer-container{
       position: fixed;
       top:0;
@@ -38,18 +43,16 @@ class AppDrawer extends LitElement{
       background:rgba(0,0,0,.35);
     }
 
-    .drawer-container.close{
-    }
-
     .drawer{
       background: rgba(255,255,255,0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       left:0px;
-      margin-left: -500px;
+      margin-left: calc( var(--drawer-width) * -1 );
       top:0;
       bottom:0;
-      width: 500px;
+      max-width: 500px;
+      width: var(--drawer-width);
       height: 100vh;
       /* display: none; */
 
@@ -62,16 +65,6 @@ class AppDrawer extends LitElement{
 
     .drawer.open{
       margin-left: 0;
-      /* display:block;
-      animation-name: open_drawer;
-      animation-duration: 0.35s;
-      animation-iteration-count: 1;
-      animation-direction: normal;
-
-      -webkit-animation-name: open_drawer;
-      -webkit-animation-duration: 0.35s;
-      -webkit-animation-iteration-count: 1;
-      -webkit-animation-direction: normal; */
     }
   `;
 

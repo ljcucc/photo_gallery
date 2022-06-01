@@ -5,6 +5,13 @@ import "./SearchBar.js";
 import "./drawer.js";
 
 class Appbar extends LitElement{
+
+  static properties = {
+    _name: {
+      type: String
+    }
+  }
+
   static styles = css`
     .topbar{
       min-height: 60px;
@@ -67,6 +74,12 @@ class Appbar extends LitElement{
     }
   `;
 
+  constructor(){
+    super();
+
+    this._name = "Public Photos";
+  }
+
   openDrawer(){
     let root = this.shadowRoot;
     let drawer = root.querySelector("app-drawer");
@@ -79,7 +92,7 @@ class Appbar extends LitElement{
       <div class="topbar">
         <icon-button name="menu" @click="${this.openDrawer}"></icon-button>
 
-        <span class="topbar__title">Photos</span>
+        <span class="topbar__title">${this._name}</span>
 
         <span class="item__end"></span>
 

@@ -1,5 +1,6 @@
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 import { styleMap } from 'https://unpkg.com/lit-html/directives/style-map'; // origin: lit-html/directives/style-map 
+import { classMap } from 'https://unpkg.com/lit-html/directives/class-map'; // origin: lit-html/directives/class-map 
 
 class SearchBar extends LitElement{
   static properties = {
@@ -20,6 +21,9 @@ class SearchBar extends LitElement{
       overflow: hidden;
       margin-right: -10px;
       transition: width 0.35s;
+
+      background: transparent;
+      border-radius: 0px;
     }
 
     input:focus{
@@ -32,6 +36,26 @@ class SearchBar extends LitElement{
       align-items: center;
       width: 100%;
       justify-content: right;
+    }
+
+    .search-icon.toggled{
+      padding-left: 10vmin;
+    }
+
+    @media only screen and (max-width: 600px){
+      .search-bar.toggled{
+        position: fixed;
+        height: 60px;
+        top:0;
+        left:0;
+        right:0;
+        width: 100vw !important;
+        background-color: white;
+      }
+
+      .search-icon.toggled{
+        padding-left: 0vmin;
+      }
     }
   `;
 
@@ -53,21 +77,31 @@ class SearchBar extends LitElement{
 
   openSearch(){
     this.toggled = true;
-    this.inputWidth = "100px";
-    // this.updateInput();
+    setTimeout(() => {
+      this.inputWidth = "100%";
+    }, 100);
   }
 
   closeSearch(){
-    this.toggled = false;
-    // this.updateInput();
+    this.inputWidth = "0%";
+    setTimeout(() => {
+      this.toggled = false;
+    }, 350);
   }
 
   render(){
     return html`
-      <div class="search-bar">
-        <icon-button name="search" @click="${this.openSearch}"></icon-button>
+      <div class="search-bar ${classMap({
+          toggled: this.toggled
+        })}">
+        <icon-button name="search" @click="${this.openSearch}" class="search-icon ${
+          classMap({
+            toggled: this.toggled
+          })
+        }"></icon-button>
         <input type="text" style="${styleMap({
-          width: this.toggled? "100%": "0"
+          width: this.inputWidth,
+          display: this.toggled? "": "none"
         })}"/>
         <icon-button style="${styleMap({
           display: this.toggled? "": "none"
