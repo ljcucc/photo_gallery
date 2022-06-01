@@ -77,9 +77,7 @@ class Appbar extends LitElement{
   render(){
     return html`
       <div class="topbar">
-        <div class="menu-button">
-          <material-icons name="menu" @click="${this.openDrawer}"></material-icons>
-        </div>
+        <icon-button name="menu" @click="${this.openDrawer}"></icon-button>
 
         <span class="topbar__title">Photos</span>
 
