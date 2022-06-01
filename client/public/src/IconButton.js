@@ -42,9 +42,14 @@ class IconButton extends LitElement{
     this.name = ""; // default value
   }
 
+  onClick(){
+    // console.log("on click");
+    // this.dispatchEvent(new Event('click'));
+  }
+
   render(){
     return html`
-      <div class="menu-button">
+      <div class="menu-button" @click="${this.onClick}">
         <material-icons name="${this.name}">${this.name}</material-icons>
       </div>
     `;

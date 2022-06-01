@@ -1,5 +1,7 @@
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+
 import "./icons.js";
+import "./SearchBar.js";
 
 class Appbar extends LitElement{
   static styles = css`
@@ -75,7 +77,7 @@ class Appbar extends LitElement{
 
         <span class="item__end"></span>
 
-        <icon-button name="search"></icon-button>
+        <search-bar></search-bar>
 
         <div class="menu-button">
           <material-icons name="more_vert"></material-icons>

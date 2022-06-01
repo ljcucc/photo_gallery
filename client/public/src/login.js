@@ -38,7 +38,7 @@ class LoginDialog extends LitElement{
       return e.json(); // handle feedback data to json
     }).then(data=>{ // handle json data
       if(!data.auth){
-        dialog.showModal();
+        // dialog.showModal();
       }
     });
   }

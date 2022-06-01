@@ -10,6 +10,7 @@ import "./appbar.js";
 import "./IconButton.js";
 import "./login.js";
 import "./photos.js";
+import "./InfoDialog.js";
 
 // Polyfills
 // import { URLPattern } from "https://cdn.jsdelivr.net/npm/urlpattern-polyfill@5.0.3/dist/urlpattern.js";
@@ -22,12 +23,17 @@ if (!window.URLPattern) {
 
 // app-root compoment
 class App extends LitElement{
+  firstUpdated(){
+    let root = this.shadowRoot;
+  }
   // render website layout
   render(){
     return html`
       <app-topbar></app-topbar>
       <login-dialog></login-dialog>
       <photos-grid></photos-grid>
+
+      <info-dialog open="true" description="This website is in development, may have issues. Report bug here: https://github.com/ljcucc/photo_gallery/issues"></info-dialog>
     `;
   }
 }
