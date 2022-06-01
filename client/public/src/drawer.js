@@ -37,6 +37,11 @@ class AppDrawer extends LitElement{
       animation-duration: 0.35s;
       animation-iteration-count: 1;
       animation-direction: normal;
+
+      -webkit-animation-name: open_bg;
+      -webkit-animation-duration: 0.35s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-direction: normal;
     }
 
     .drawer-container.close{
@@ -63,6 +68,11 @@ class AppDrawer extends LitElement{
       animation-duration: 0.35s;
       animation-iteration-count: 1;
       animation-direction: normal;
+
+      -webkit-animation-name: open_drawer;
+      -webkit-animation-duration: 0.35s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-direction: normal;
     }
 
     .drawer.close{
