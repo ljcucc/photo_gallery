@@ -83,7 +83,7 @@ class Appbar extends LitElement{
 
         <span class="item__end"></span>
 
-        <search-bar></search-bar>
+        <search-bar style="flex: 1;"></search-bar>
 
         <div class="menu-button">
           <material-icons name="more_vert"></material-icons>
