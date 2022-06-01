@@ -7,6 +7,9 @@ class AppDrawer extends LitElement{
     open: {
       type: Boolean,
       reflect: true
+    },
+    _close: {
+      type: Boolean,
     }
   }
 
@@ -24,6 +27,22 @@ class AppDrawer extends LitElement{
       right:0;
       bottom:0;
       background:rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      display: none;
+    }
+
+    .drawer-container.open{
+      display:block;
+      animation-name: open_bg;
+      animation-duration: 0.35s;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+    }
+
+    .drawer-container.close{
+      transition: all 0.35s;
+      background: rgba(0,0,0,0);
+      backdrop-filter: blur(0px);
     }
 
     .drawer{
@@ -35,6 +54,42 @@ class AppDrawer extends LitElement{
       bottom:0;
       width: 500px;
       height: 100vh;
+      display: none;
+    }
+
+    .drawer.open{
+      display:block;
+      animation-name: open_drawer;
+      animation-duration: 0.35s;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+    }
+
+    .drawer.close{
+      transition: all 0.35s;
+      margin-left: -500px;
+    }
+
+    @keyframes open_drawer{
+      from {
+        margin-left: -500px;
+      }
+
+      to {
+        margin-left:0;
+      }
+    }
+
+    @keyframes open_bg{
+      from {
+        background: rgba(0,0,0,0);
+        backdrop-filter: blur(0px);
+      }
+
+      to {
+        background: rgba(0,0,0,0.35);
+        backdrop-filter: blur(10px);
+      }
     }
   `;
 
@@ -44,16 +99,20 @@ class AppDrawer extends LitElement{
   }
 
   closeDrawer(){
-    this.open = false;
+    // this.open = false;
+    this._close = true;
     console.log("close")
+
+    setTimeout(()=>{
+      this._close = false;
+      this.open = false;
+    }, 360);
   }
 
   render(){
     return html`
-    <div @click="${this.closeDrawer}" class="drawer-container" style="${styleMap({
-      display: this.open? "": "none"
-    })}">
-      <div class="drawer"></div>
+    <div @click="${this.closeDrawer}" class="${classMap({'drawer-container':true, 'open': this.open, 'close': this._close})}">
+      <div class="${classMap({'drawer': true, 'open': this.open, 'close': this._close})}"></div>
     </div>
     `;
   }
