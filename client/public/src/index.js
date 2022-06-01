@@ -9,7 +9,7 @@
   urlpattern-polyfill: https://github.com/kenchris/urlpattern-polyfill/blob/main/LICENSE
 */
 
-import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 
 // All component that related to app-root or at the root(top) will import from here
 import "./appbar.js";
@@ -20,23 +20,44 @@ import "./InfoDialog.js";
 import "./ProjectBanner.js";
 import "./UnusableWarning.js";
 
+// redirect to https if using http
+if (location.protocol == "http:" && !(location.hostname == "localhost" || location.hostname == "127.0.0.1")) location.protocol = "https:";
+
+// working with service-worker in order to make PWA installation works
+window.addEventListener('load', () => {
+  async function registerSW() {
+    if ('serviceWorker' in navigator) {
+      try {
+        await navigator.serviceWorker.register('./service-worker.js');
+      } catch (e) {
+        console.log('ServiceWorker registration failed. Sorry about that.', e);
+      }
+    } else {
+      console.log('Your browser does not support ServiceWorker.');
+    }
+  }
+  registerSW();
+});
+
+
+
 // >>> Polyfills START
-if (!window.URLPattern) { 
+if (!window.URLPattern) {
   const { URLPattern } = await import("https://cdn.jsdelivr.net/npm/urlpattern-polyfill@5.0.3/dist/urlpattern.js");
   window.URLPattern = URLPattern;
-}else{
+} else {
   console.log("Polyfill: URLPattern exists!")
 }
 // <<< Polyfills END
 
 // app-root compoment
-class App extends LitElement{
-  firstUpdated(){
+class App extends LitElement {
+  firstUpdated() {
     let root = this.shadowRoot;
   }
 
   // render website layout
-  render(){
+  render() {
     return html`
       <app-topbar></app-topbar>
 
