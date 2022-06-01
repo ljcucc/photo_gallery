@@ -16,7 +16,7 @@ class SearchBar extends LitElement{
       height: 32px;
       border: none;
       outline: none;
-      font-size: 16px;
+      font-size: 18px;
       border-bottom: rgba(0,0,0,.35) solid 1.5px;
       overflow: hidden;
       margin-right: -10px;
@@ -99,7 +99,7 @@ class SearchBar extends LitElement{
             toggled: this.toggled
           })
         }"></icon-button>
-        <input type="text" style="${styleMap({
+        <input type="text" placeholder="Places, People, Things... " style="${styleMap({
           width: this.inputWidth,
           display: this.toggled? "": "none"
         })}"/>
