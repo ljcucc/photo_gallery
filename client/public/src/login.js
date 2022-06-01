@@ -5,6 +5,7 @@ class LoginDialog extends LitElement{
     dialog::backdrop {
       background: rgba(0,0,0,.25);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     dialog{
@@ -71,7 +72,7 @@ class LoginDialog extends LitElement{
           <button id="login">Login</button>
         </form>
 
-        <p style="text-align: center;opacity: 0.35;">Required login to upload, not login is fine.</p>
+        <p style="text-align: center;opacity: 0.35;">Required login to upload, not login will be fine.</p>
       </dialog>
     `;
   }

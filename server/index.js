@@ -6,6 +6,8 @@ const sqlite3 = require("sqlite3");
 const session = require("express-session");
 const sqliteStoreFactory = require("express-session-sqlite").default;
 
+const path = require('path');
+
 const { interfaces } = require("./src/interface.js");
 
 const SqliteStore = sqliteStoreFactory(session);
@@ -26,6 +28,24 @@ app.use(session({
   
 
 app.use('/', express.static(__dirname + '/../client/public/'));
+// app.use('/api/images/full', express.static(__dirname + '/../database/images'));
+
+app.get('/api/images/thumbnail/:name', function (req, res) {
+  const name = req.params.name;
+
+  if(RegExp('/^([A-z-_0-9])+(.jpg|.jpeg|.png)$/g').test(name)){
+    console.log(name);
+    res.statusCode = 502;
+    res.json({
+      result: false,
+      msg: "not valid filename"
+    });
+    return;
+  }
+
+  let filepath = path.resolve(`${__dirname}/../database/images/`, name);
+  res.sendFile(filepath);
+});
 
 interfaces(app);
 

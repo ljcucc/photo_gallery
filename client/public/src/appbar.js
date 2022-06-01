@@ -11,9 +11,10 @@ class Appbar extends LitElement{
       position: fixed;
 
       border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-      background: rgba(255,255,255.0.35);
+      background: rgba(255,255,255, 0.75);
 
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
 
       padding: 0 1rem;
 
@@ -72,7 +73,11 @@ class Appbar extends LitElement{
 
         <span class="topbar__title">Photos</span>
 
-        <div class="menu-button item__end">
+        <span class="item__end"></span>
+
+        <icon-button name="search"></icon-button>
+
+        <div class="menu-button">
           <material-icons name="more_vert"></material-icons>
         </div>
       </div>
