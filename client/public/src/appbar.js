@@ -2,6 +2,7 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/
 
 import "./icons.js";
 import "./SearchBar.js";
+import "./drawer.js";
 
 class Appbar extends LitElement{
   static styles = css`
@@ -66,11 +67,18 @@ class Appbar extends LitElement{
     }
   `;
 
+  openDrawer(){
+    let root = this.shadowRoot;
+    let drawer = root.querySelector("app-drawer");
+
+    drawer.openDrawer();
+  }
+
   render(){
     return html`
       <div class="topbar">
         <div class="menu-button">
-          <material-icons name="menu"></material-icons>
+          <material-icons name="menu" @click="${this.openDrawer}"></material-icons>
         </div>
 
         <span class="topbar__title">Photos</span>
@@ -83,6 +91,8 @@ class Appbar extends LitElement{
           <material-icons name="more_vert"></material-icons>
         </div>
       </div>
+
+      <app-drawer></app-drawer>
     `;
   }
 }

@@ -4,25 +4,28 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/
 
 class PhotosGrid extends LitElement{
   static styles = css`
-  .box{
+  :host{
     --each-line: 5;
     --side: calc( 100vw / var(--each-line) - 20px );
+  }
+
+  .box{
     width: var(--side);
     height:var(--side);
     background: #e0e0e0;
-    transition: box-shadow 0.35s, width 0.15s, height 0.15s;
+    transition: box-shadow 0.35s;
     object-fit: cover;
   }
 
   .boxes{
-    display: flex;
+    display: grid;
+    grid-auto-rows: var(--side);
+    grid-template-columns: repeat(5, 1fr);
     box-sizing: content-box;
-    flex-wrap: wrap;
     gap: 10px;
     padding-top: 100px;
     margin: auto;
     justify-content: center;
-    transition: width 0.35s, height 0.35s;
   }
 
   .box:hover{
