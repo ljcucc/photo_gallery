@@ -1,3 +1,11 @@
+/*
+
+  SearchBar.js
+
+  This is a Searhing UI Component
+
+*/
+
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 import { styleMap } from 'https://unpkg.com/lit-html/directives/style-map'; // origin: lit-html/directives/style-map 
 import { classMap } from 'https://unpkg.com/lit-html/directives/class-map'; // origin: lit-html/directives/class-map 
@@ -39,10 +47,10 @@ class SearchBar extends LitElement{
     }
 
     .search-icon.toggled{
-      padding-left: 10vmin;
+      /* padding-left: calc(70vw - 50vw); */
     }
 
-    @media only screen and (max-width: 600px){
+    @media only screen and (max-width: 800px){
       .search-bar.toggled{
         position: fixed;
         height: 60px;
