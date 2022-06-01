@@ -12,7 +12,7 @@ const SqliteStore = sqliteStoreFactory(session);
 
 app.use(session({
   store: new SqliteStore({
-    driver: sqlite3.Databasem,
+    driver: sqlite3.Database,
     path: "/tmp/sqlite.db",
     ttl: 1234,
     prefix: 'sess:',
@@ -25,7 +25,7 @@ app.use(session({
 }))
   
 
-app.use('/', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + '/../client/public/'));
 
 interfaces(app);
 

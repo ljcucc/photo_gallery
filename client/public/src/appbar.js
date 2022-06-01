@@ -11,6 +11,9 @@ class Appbar extends LitElement{
       position: fixed;
 
       border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+      background: rgba(255,255,255.0.35);
+
+      backdrop-filter: blur(10px);
 
       padding: 0 1rem;
 
