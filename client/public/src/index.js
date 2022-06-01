@@ -18,6 +18,7 @@ import "./login.js";
 import "./photos.js";
 import "./InfoDialog.js";
 import "./ProjectBanner.js";
+import "./UnusableWarning.js";
 
 // >>> Polyfills START
 if (!window.URLPattern) { 
@@ -38,12 +39,15 @@ class App extends LitElement{
   render(){
     return html`
       <app-topbar></app-topbar>
+
       <login-dialog></login-dialog>
+      <unusable-warning></unusable-warning>
+
       <project-banner></project-banner>
 
       <photos-grid></photos-grid>
 
-      <info-dialog open description="This project is an open source project, you can find it here: https://github.com/ljcucc/photo_gallery"></info-dialog>
+      <info-dialog open title="Welcome!" description="This project is an open source project, you can find it here: https://github.com/ljcucc/photo_gallery"></info-dialog>
     `;
   }
 }

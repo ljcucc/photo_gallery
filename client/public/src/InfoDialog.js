@@ -2,9 +2,17 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/
 
 class InfoDialog extends LitElement{
   static properties = {
+    title: {type: String},
     description: {type: String},
     open: {type: Boolean}
   }
+
+  constructor(){
+    super();
+
+    this.title = "No title";
+  }
+
   static styles = css`
     dialog::backdrop {
       background: rgba(0,0,0,.25);
@@ -27,6 +35,33 @@ class InfoDialog extends LitElement{
       align-items: center;
       margin-bottom: 60px;
     }
+
+    .title-bar{
+      display: flex;
+      flex-direction: row;
+      /* justify-content: center; */
+      align-items: center;
+    }
+
+    .title-bar>h2{
+      margin:0;
+      padding: 0;
+      text-align: center;
+      flex: 1;
+      margin-left: -50px;
+      z-index: -1;
+    }
+
+    .description{
+      text-align: center;
+      margin: auto;
+      float: center;
+      display: flex;
+      align-items:center;
+      justify-content: center;
+      min-height: 200px;
+      height: auto;
+    }
   `;
 
   updated(){
@@ -46,12 +81,16 @@ class InfoDialog extends LitElement{
     return html`
       <link rel="stylesheet" href="style.css" />
       <dialog>
-        <form method="dialog">
+        <form method="dialog" class="title-bar">
           <button class="span" value="cancel">
             <icon-button name="close"></icon-button>
           </button>
+
+          <h2>${this.title}</h2>
         </form>
-        <p style="text-align: center;">${this.description}</p>
+        <p class="description">
+          <span>${this.description}</span>
+        </p>
       </dialog>
     `;
   }

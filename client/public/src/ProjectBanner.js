@@ -18,8 +18,10 @@ class ProjectBanner extends LitElement{
     }
     .info{
       color: black;
-      padding: 16px;
-      background: rgb(0 0 0 / 15%);
+      padding: 24px;
+      /* padding: 16px; */
+      /* background: rgb(0 0 0 / 15%); */
+      border: 1px solid rgba(0 0 0 / 35%);
       margin: 32px;
       border-radius: 10px;
       max-width: 800px;
@@ -34,7 +36,11 @@ class ProjectBanner extends LitElement{
   render(){
     return html`
       <div class="container">
-        <div class="info">Hello! this project is under development. for the better experience to view source code, please checkout the repository of this project: <a href="https://github.com/ljcucc/photo_gallery">https://github.com/ljcucc/photo_gallery</a> or <a href="https://github.com/ljcucc/photo_gallery/tree/main/client/public"> The front-end code can be found here</a>.</div>
+        <div class="info">
+          Hello! this project trying to demo web component, which is under development. for the better experience to view source code, please checkout the repository of this project: <a href="https://github.com/ljcucc/photo_gallery">https://github.com/ljcucc/photo_gallery</a> or <a href="https://github.com/ljcucc/photo_gallery/tree/main/client/public"> The front-end code can be found here</a>.
+          <br><br>
+          By far, All components you see are reusable for and to other framework and projects.
+        </div>
       </div>
     `;
   }
