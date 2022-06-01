@@ -80,8 +80,9 @@ class PhotosGrid extends LitElement{
   render(){
     return html`
     <div class="boxes">
-      ${Array.from(Array(this.page*10).keys()).map(item=>
-        html`<img class="box" src="/api/images/thumbnail/demo.jpg"/>`
+      ${Array.from(Array(this.page*50).keys()).map(item=>
+        // html`<img class="box" src="/api/images/thumbnail/demo.jpg"/>`
+        html`<img class="box" src="https://picsum.photos/seed/${item+200}/200?grayscale"/>`
       )}
     </div>
     <button @click="${this.loadPage}">load more</button>
