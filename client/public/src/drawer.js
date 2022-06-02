@@ -35,6 +35,8 @@ class AppDrawer extends LitElement{
       background: rgba(0,0,0,0);
       backdrop-filter: blur(0px);
       display: none;
+
+      z-index: 2000;
     }
 
     .drawer-container.open{
@@ -85,10 +87,24 @@ class AppDrawer extends LitElement{
   render(){
     return html`
     <div @click="${this.closeDrawer}" class="${classMap({'drawer-container':true, 'open': this.open, 'show': this.show})}">
-      <div class="${classMap({'drawer': true, 'open': this.open, 'show': this.show})}"></div>
+      <div class="${classMap({'drawer': true, 'open': this.open, 'show': this.show})}">
+        <drawer-content></drawer-content>
+      </div>
     </div>
     `;
   }
 }
 
+class DrawerContent extends LitElement{
+  static styles = css`
+  `;
+
+  render(){
+    return html`
+      exmpale content
+    `;
+  }
+}
+
 customElements.define("app-drawer", AppDrawer);
+customElements.define("drawer-content", DrawerContent);
