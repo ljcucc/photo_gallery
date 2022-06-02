@@ -10,6 +10,7 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/
 import "./icons.js";
 import "./SearchBar.js";
 import "./drawer.js";
+import "./DropMenu.js";
 
 class Appbar extends LitElement{
 
@@ -94,6 +95,13 @@ class Appbar extends LitElement{
     drawer.openDrawer();
   }
 
+  openMenu(){
+    let root = this.shadowRoot;
+    let dropMenu = root.querySelector("drop-menu");
+
+    dropMenu.toggleMenu();
+  }
+
   render(){
     return html`
       <div class="topbar">
@@ -105,9 +113,16 @@ class Appbar extends LitElement{
 
         <search-bar style="flex: 1;"></search-bar>
 
+        <icon-button name="more_vert" @click="${this.openMenu}"></icon-button>
+<!-- 
         <div class="menu-button">
           <material-icons name="more_vert"></material-icons>
-        </div>
+        </div> -->
+
+        <drop-menu>
+          hi
+        </drop-menu>
+        
       </div>
 
       <app-drawer></app-drawer>

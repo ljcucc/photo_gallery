@@ -89,7 +89,9 @@ class InfoDialog extends LitElement{
           <h2>${this.title}</h2>
         </form>
         <p class="description">
-          <span>${this.description}</span>
+          <span>
+            <slot></slot>
+          </span>
         </p>
       </dialog>
     `;
