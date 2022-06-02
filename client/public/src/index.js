@@ -62,10 +62,38 @@ class App extends LitElement {
     let root = this.shadowRoot;
   }
 
+  openMenu(){
+    let root = this.shadowRoot;
+    let dropMenu = root.querySelector("drop-menu");
+
+    dropMenu.toggleMenu();
+  }
+
+  openDrawer(){
+    let root = this.shadowRoot;
+    let drawer = root.querySelector("app-drawer");
+
+    drawer.openDrawer();
+  }
+
   // render website layout
   render() {
     return html`
-      <app-topbar></app-topbar>
+      <app-drawer></app-drawer>
+
+      <app-topbar>
+        <appbar-items slot="left">
+          <icon-button name="menu" @click="${this.openDrawer}"></icon-button>
+          <appbar-title title="Public Photos"></appbar-title>
+        </appbar-items>
+        <appbar-items slot="right">
+          <icon-button name="more_vert" @click="${this.openMenu}"></icon-button>
+
+          <drop-menu>
+            something
+          </drop-menu>
+        </appbar-items>
+      </app-topbar>
 
       <login-dialog></login-dialog>
       <unusable-warning></unusable-warning>

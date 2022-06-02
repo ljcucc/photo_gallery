@@ -14,12 +14,6 @@ import "./DropMenu.js";
 
 class Appbar extends LitElement{
 
-  static properties = {
-    _name: {
-      type: String
-    }
-  }
-
   static styles = css`
     .topbar{
       min-height: 60px;
@@ -42,12 +36,7 @@ class Appbar extends LitElement{
       align-items:center;
     }
 
-    .topbar__title{
-      font-size: 24px;
-      grid-column: 2/8;
-    }
-
-    .menu-button{
+    /* .menu-button{
       width: 50px;
       height: 50px;
 
@@ -75,7 +64,7 @@ class Appbar extends LitElement{
 
     .menu-button:active{
       background-color: rgba(0,0,0,0.35);
-    }
+    } */
 
     .item__end{
       margin-left:auto;
@@ -84,50 +73,67 @@ class Appbar extends LitElement{
 
   constructor(){
     super();
-
-    this._name = "Public Photos";
-  }
-
-  openDrawer(){
-    let root = this.shadowRoot;
-    let drawer = root.querySelector("app-drawer");
-
-    drawer.openDrawer();
-  }
-
-  openMenu(){
-    let root = this.shadowRoot;
-    let dropMenu = root.querySelector("drop-menu");
-
-    dropMenu.toggleMenu();
   }
 
   render(){
     return html`
       <div class="topbar">
-        <icon-button name="menu" @click="${this.openDrawer}"></icon-button>
-
-        <span class="topbar__title">${this._name}</span>
+        <slot name="left"></slot>
 
         <span class="item__end"></span>
-
         <search-bar style="flex: 1;"></search-bar>
 
-        <icon-button name="more_vert" @click="${this.openMenu}"></icon-button>
-<!-- 
-        <div class="menu-button">
-          <material-icons name="more_vert"></material-icons>
-        </div> -->
-
-        <drop-menu>
-          hi
-        </drop-menu>
-        
+        <slot name="right"></slot> 
       </div>
 
-      <app-drawer></app-drawer>
     `;
   }
 }
 
+class TopbarItems extends LitElement{
+  static styles = css` 
+    .items{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  `;
+
+  render(){
+    return html`
+      <div class="items">
+        <slot></slot>
+      </div>
+    `;
+  }
+}
+
+class TopbarTitle extends LitElement{
+  static properties = {
+    title: {
+      type: String
+    }
+  }
+
+  constructor(){
+    super();
+
+    this.title = "Title";
+  }
+
+  static styles = css`
+    .topbar__title{
+      font-size: 24px;
+      grid-column: 2/8;
+    }
+  `;
+  render(){
+    return html`
+        <span class="topbar__title">${this.title}</span>
+    `
+  }
+}
+
 customElements.define("app-topbar", Appbar);
+customElements.define("appbar-title", TopbarTitle);
+customElements.define("appbar-items", TopbarItems);

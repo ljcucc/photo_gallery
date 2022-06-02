@@ -7,8 +7,8 @@ class FloatButton extends LitElement{
 
   static styles = css`
     .menu-button{
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
 
       display: flex;
 
