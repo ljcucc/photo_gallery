@@ -2,7 +2,7 @@
 
   file: index.js
 
-  This is the entry of everything. check all source below ↓
+  This is the entry of everything, bootstrap everything together. check all source below ↓
 
   CREDIT
 
@@ -79,7 +79,9 @@ class App extends LitElement {
   // render website layout
   render() {
     return html`
-      <app-drawer></app-drawer>
+      <app-drawer>
+        hello
+      </app-drawer>
 
       <app-topbar>
         <appbar-items slot="left">

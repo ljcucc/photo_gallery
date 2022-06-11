@@ -88,23 +88,13 @@ class AppDrawer extends LitElement{
     return html`
     <div @click="${this.closeDrawer}" class="${classMap({'drawer-container':true, 'open': this.open, 'show': this.show})}">
       <div class="${classMap({'drawer': true, 'open': this.open, 'show': this.show})}">
-        <drawer-content></drawer-content>
+        <div class="drawer-container">
+          <slot></slot>
+        </div>
       </div>
     </div>
     `;
   }
 }
 
-class DrawerContent extends LitElement{
-  static styles = css`
-  `;
-
-  render(){
-    return html`
-      exmpale content
-    `;
-  }
-}
-
 customElements.define("app-drawer", AppDrawer);
-customElements.define("drawer-content", DrawerContent);

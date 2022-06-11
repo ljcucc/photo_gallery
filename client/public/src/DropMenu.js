@@ -28,13 +28,12 @@ class DropMenu extends LitElement{
     height: 300px;
     background: white;
     top: 0;
-    right: 0;
+    right: 24px;
 
     transition: all 0.25s;
 
     border-radius: 10px;
     box-shadow: rgba(0,0,0,.15) 0px 0px 20px;
-
   }
 
   .drop-menu.show{
@@ -99,4 +98,25 @@ class DropMenu extends LitElement{
   }
 }
 
+class DropMenuList extends LitElement{
+  static properties = {
+    list: {
+      type: String
+    }
+  }
+
+  static styles = css`
+  `;
+
+  render(){
+    let listItems = this.list.split(",");
+    return html`
+      <div class="list">
+        ${listItems.map(item=>html`${item}`)}
+      </div>
+    `;
+  }
+}
+
 customElements.define("drop-menu", DropMenu);
+customElements.define("dropmenu-list", DropMenuList);

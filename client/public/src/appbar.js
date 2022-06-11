@@ -23,7 +23,7 @@ class Appbar extends LitElement{
       position: sticky;
 
       border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-      background: rgba(255,255,255, 0.75);
+      background: rgba(255,255,255, 0.95);
 
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
