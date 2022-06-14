@@ -93,6 +93,12 @@ class App extends LitElement {
     drawer.openDrawer();
   }
 
+  openUploader(){
+    let root = this.shadowRoot;
+    let upload = root.querySelector("upload-dialog"); 
+    upload.openDialog();
+  }
+
   // render website layout
   render() {
     return html`
@@ -136,7 +142,7 @@ class App extends LitElement {
       <!-- fixed components -->
       <unusable-warning></unusable-warning>
       <project-banner></project-banner>
-      <float-icon-button name="upload"></float-icon-button>
+      <float-icon-button name="upload" @click="${this.openUploader}"></float-icon-button>
       <app-drawer>
         <drawer-title>
           <span slot="title">

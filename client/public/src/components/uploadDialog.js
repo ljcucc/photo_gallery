@@ -4,17 +4,22 @@ class UploadDialog extends LitElement{
   static properties = {
     opened: {
       type: Boolean
+    },
+    filename: {
+      type: String
     }
   };
 
   constructor(){
     super();
     // this.name = ""; // default value
+    this.filename = "";
   }
 
   dropHandler(e){
     console.log("dropped");
     e.preventDefault();
+
 
     if (e.dataTransfer.items) {
       // Use DataTransferItemList interface to access the file(s)
@@ -23,12 +28,14 @@ class UploadDialog extends LitElement{
         if (e.dataTransfer.items[i].kind === 'file') {
           const file = e.dataTransfer.items[i].getAsFile();
           console.log('... file[' + i + '].name = ' + file.name);
+          this.filename = file.name;
         }
       }
     } else {
       // Use DataTransfer interface to access the file(s)
       for (let i = 0; i < e.dataTransfer.files.length; i++) {
         console.log('... file[' + i + '].name = ' + e.dataTransfer.files[i].name);
+          this.filename = e.dataTransfer.files[i].name;
       }
     }
   }
@@ -105,14 +112,44 @@ class UploadDialog extends LitElement{
       min-height: 200px;
       height: auto;
     }
+
+
+    .file-upload{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
   `;
+
+  openDialog(){
+    this.opened = true;
+
+    let root = this.shadowRoot;
+    let dialog = root.querySelector("dialog");
+    dialog.showModal();
+  }
+
+  closeDialog(){
+    this.opened = false;
+
+    let root = this.shadowRoot;
+    let dialog = root.querySelector("dialog");
+    dialog.close();
+  }
 
   render(){
     return html`
     <div @drop="${this.dropHandler}" @dragover="${this.dragOverHandler}">
       <slot></slot>
 
-      <dialog @dragenter="${this.dragOverHandler}" @drop="${this.dropHandler}">
+      <dialog @click="${this.closeDialog}" @dragenter="${this.dragOverHandler}" @drop="${this.dropHandler}">
+        <div class="file-upload">
+          <h2>Upload file</h2>
+          <p>drop file here to upload</p>
+          ${this.filename}
+        </div>
       </dialog>
     </div>
     `;
