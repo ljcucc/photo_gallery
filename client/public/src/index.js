@@ -79,11 +79,16 @@ class App extends LitElement {
     let root = this.shadowRoot;
     let loginDialog = root.querySelector("login-dialog");
 
+    console.log("open dialog");
+
     loginDialog.openDialog();
   }
 
   openAboutDialog(){
-
+    let root = this.shadowRoot;
+    let aboutDialog = root.querySelector("#about-dialog");
+    aboutDialog.showDialog();
+    console.log("open dialog");
   }
 
   openDrawer(){
@@ -119,17 +124,23 @@ class App extends LitElement {
 
               switch(id){
                 case "About":
-                  alert("PhotoBackup v0.1\nAuthor: https://www.ljcu.cc");
+                  this.openAboutDialog()
                   break;
                 case "Login":
                   this.openLoginDialog();
                   break;
                 case "Signup":
                   break;
+                case "Source Code":
+                  window.open("https://github.com/ljcucc/photo_gallery");
+                  break;
+                case "Home site":
+                  window.open("https://ljcu.cc");
+                  break;
                 default:
                   alert("dropdown menu option not found.")
               }
-            }).bind(this)}" list="Login,Signup;split,About"></dropmenu-list>
+            }).bind(this)}" list="Login,Signup;split,Source Code,Home site;split,Settings,About"></dropmenu-list>
           </drop-menu>
         </appbar-items>
       </app-topbar>
@@ -156,10 +167,10 @@ class App extends LitElement {
         <drawer-item selected="false">
           Home
         </drawer-item>
-        <drawer-item>
+        <drawer-item @click="${()=>alert("feature unfinish")}">
           Albums
         </drawer-item>
-        <drawer-item>
+        <drawer-item @click="${()=>alert("feature unfinish")}">
           Settings
         </drawer-item>
       </app-drawer>
