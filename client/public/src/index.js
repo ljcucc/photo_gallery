@@ -24,8 +24,6 @@ import "./components/FloatButton.js";
 import "./components/uploadDialog.js";
 import "./ImageView.js";
 
-let isLocalhost = ()=>location.hostname == "localhost" || location.hostname == "127.0.0.1"
-
 // const enableServiceWorker = !isLocalhost();
 
 // if (enableServiceWorker) {

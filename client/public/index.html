@@ -8,6 +8,7 @@
 
   <script>
   // redirect to https if using http
+  let isLocalhost = ()=>location.hostname == "localhost" || location.hostname == "127.0.0.1"
   if (location.protocol == "http:" && !(isLocalhost())) location.protocol = "https:";
   </script>
 
