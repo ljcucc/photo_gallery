@@ -48,7 +48,7 @@ class Appbar extends LitElement{
 
     .gradiant{
       --shadow-color:rgba(0,0,0,0);
-      --background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);;
+      --background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);;
     }
 
     .noGradiant{
