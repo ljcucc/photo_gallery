@@ -114,6 +114,7 @@ class DropMenuList extends LitElement{
       font-size: 16px;
 
       transition: background 0.35s;
+      cursor: pointer;
     }
 
     .list>.item.split{

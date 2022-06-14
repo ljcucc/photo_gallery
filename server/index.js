@@ -47,6 +47,12 @@ app.get('/api/images/thumbnail/:name', function (req, res) {
   res.sendFile(filepath);
 });
 
+app.get('*', function (req, res) {
+  let filepath = path.resolve(`${__dirname}/../client/public/index.html`);
+  res.setHeader('Content-Type', 'text/html');
+  res.sendFile(filepath, 404);
+});
+
 interfaces(app);
 
 app.listen(port, () => {

@@ -87,7 +87,7 @@ class App extends LitElement {
   openAboutDialog(){
     let root = this.shadowRoot;
     let aboutDialog = root.querySelector("#about-dialog");
-    aboutDialog.showDialog();
+    aboutDialog.openDialog();
     console.log("open dialog");
   }
 
@@ -147,9 +147,6 @@ class App extends LitElement {
 
       <!-- dialogs -->
       <login-dialog></login-dialog>
-      <info-dialog id="about-dialog" title="Welcome!">
-        This project is an open source project, you can find it here: <a href="https://github.com/ljcucc/photo_gallery" target="_blank" rel="noopener noreferrer">https://github.com/ljcucc/photo_gallery</a>
-      </info-dialog>
 
       <!-- fixed components -->
       <unusable-warning></unusable-warning>
@@ -190,7 +187,8 @@ class RouterOutlet extends LitElement{
   firstUpdated(){
     const router = new Router(this);
     router.setRoutes([
-      {path: "/", component: 'app-home'}
+      {path: "/", component: 'app-home'},
+      {path: "/view/:id", component: 'image-view'}
     ])
   }
 
@@ -204,7 +202,12 @@ class RouterOutlet extends LitElement{
 class AppHome extends LitElement{
   render(){
     return html`
-      <photos-grid route="home"></photos-grid>
+      <info-dialog id="about-dialog" title="Welcome!">
+        This project is an open source project, you can find it here: <a href="https://github.com/ljcucc/photo_gallery" target="_blank" rel="noopener noreferrer">https://github.com/ljcucc/photo_gallery</a>
+      </info-dialog>
+      <photos-grid route="home" @click="${()=>{
+        Router.go('/view/test');
+      }}"></photos-grid>
     `;
   }
 }
