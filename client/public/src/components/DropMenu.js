@@ -25,7 +25,7 @@ class DropMenu extends LitElement{
   .menu{
     position: absolute;
     width: 200px;
-    height: 300px;
+    /* height: 300px; */
     background: white;
     top: 0;
     right: 24px;

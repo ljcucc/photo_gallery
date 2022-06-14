@@ -26,6 +26,13 @@ class ImageView extends LitElement{
   }
   `;
 
+  openMenu(){
+    let root = this.shadowRoot;
+    let dropMenu = root.querySelector("drop-menu");
+
+    dropMenu.toggleMenu();
+  }
+
   render(){
     if(router){
       var item = router.location.params.id;
@@ -37,6 +44,22 @@ class ImageView extends LitElement{
           <icon-button dark name="arrow_back" @click="${()=>{
             Router.go("/");
           }}"></icon-button>
+        </appbar-items>
+
+        <appbar-items slot="right">
+          <icon-button dark name="zoom_in"></icon-button>
+          <icon-button dark name="zoom_out"></icon-button>
+          <icon-button dark name="more_vert" @click="${this.openMenu}"></icon-button>
+          <drop-menu>
+            <dropmenu-list @item-click="${((e)=>{
+              const id = e.detail?.id || "id not found";
+
+              switch(id){
+                default:
+                  alert("dropdown menu option not found.")
+              }
+            }).bind(this)}" list="Edit,Infomation,Delete"></dropmenu-list>
+          </drop-menu>
         </appbar-items>
       </app-topbar>
       <img src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
