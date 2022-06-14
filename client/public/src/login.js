@@ -27,7 +27,6 @@ class LoginDialog extends LitElement{
 
   firstUpdated(){
     let root = this.shadowRoot; // get shadow root in order to get DOM
-    let dialog = root.querySelector("dialog");
     let loginBtn = root.querySelector("#login");
 
     loginBtn.addEventListener("click", this.onLogin.bind(this));
@@ -41,6 +40,12 @@ class LoginDialog extends LitElement{
         // dialog.showModal();
       }
     });
+  }
+
+  openDialog(){
+    let root = this.shadowRoot; // get shadow root in order to get DOM
+    let dialog = root.querySelector("dialog");
+    dialog.showModal();
   }
 
   onLogin(e){

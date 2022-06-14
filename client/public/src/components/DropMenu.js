@@ -34,6 +34,8 @@ class DropMenu extends LitElement{
 
     border-radius: 10px;
     box-shadow: rgba(0,0,0,.15) 0px 0px 20px;
+
+    overflow: hidden;
   }
 
   .drop-menu.show{
@@ -106,13 +108,47 @@ class DropMenuList extends LitElement{
   }
 
   static styles = css`
+    .list>.item{
+      width: 100%;
+      padding: 16px 24px;
+      font-size: 16px;
+
+      transition: background 0.35s;
+    }
+
+    .list>.item.split{
+      border-bottom: 1px solid rgba(0,0,0,0.35);
+    }
+
+    .list>.item:hover{
+      background:rgba(0,0,0,.15);
+    }
+
+    .list>.item:active{
+      background:rgba(0,0,0,.35);
+    }
   `;
+
+  itemClicked(id){
+    // const id = e.path[0].id;
+    return (() => {
+      console.log(id)
+      const event = new CustomEvent('item-click', {
+        detail: { id }
+      });
+      this.dispatchEvent(event);
+    }).bind(this);
+  }
 
   render(){
     let listItems = this.list.split(",");
+    let getTitle = (item)=>item.split(";")[0];
+    let getType = (item)=>item.split(";")[1];
     return html`
       <div class="list">
-        ${listItems.map(item=>html`${item}`)}
+        ${listItems.map(item=>html`<div id="${getTitle(item)}" @click="${this.itemClicked(getTitle(item))}" class="item${classMap({
+          split: getType(item) || "" == "split"
+        })}">${getTitle(item)}</div>`)}
       </div>
     `;
   }
