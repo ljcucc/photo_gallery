@@ -102,6 +102,10 @@ class UploadDialog extends LitElement{
       z-index: -1;
     }
 
+    h2{
+      margin: 8px 0px;
+    }
+
     .description{
       text-align: center;
       margin: auto;
