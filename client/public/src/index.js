@@ -26,9 +26,6 @@ import "./ImageView.js";
 
 let isLocalhost = ()=>location.hostname == "localhost" || location.hostname == "127.0.0.1"
 
-// redirect to https if using http
-if (location.protocol == "http:" && !(isLocalhost())) location.protocol = "https:";
-
 // const enableServiceWorker = !isLocalhost();
 
 // if (enableServiceWorker) {

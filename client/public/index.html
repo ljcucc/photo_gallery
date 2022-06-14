@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photos</title>
 
+  <script>
+  // redirect to https if using http
+  if (location.protocol == "http:" && !(isLocalhost())) location.protocol = "https:";
+  </script>
+
   <!-- using PWA -->
   <link rel="manifest" href="/manifest.json">
 
