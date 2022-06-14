@@ -57,6 +57,7 @@ class AppDrawer extends LitElement{
       max-width: 500px;
       width: var(--drawer-width);
       height: 100vh;
+      height: 100lvh;
       /* display: none; */
 
       transition: all 0.35s;
