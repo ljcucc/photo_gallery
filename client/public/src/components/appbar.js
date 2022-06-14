@@ -24,7 +24,7 @@ class Appbar extends LitElement{
   static styles = css`
     .topbar{
       --shadow-color: rgba(0, 0, 0, 0.35);
-      --background: rgba(255,255,255, 0.95);
+      --background: rgba(255,255,255, 1);
       min-height: 60px;
       top: 0;
       left: 0;
@@ -44,6 +44,7 @@ class Appbar extends LitElement{
     .blur{
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      --background: rgba(255,255,255, 0.95);
     }
 
     .gradiant{

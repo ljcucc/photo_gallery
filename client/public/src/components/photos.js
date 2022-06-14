@@ -103,6 +103,7 @@ class PhotosGrid extends LitElement{
     this.page ++;
   }
 
+  // TODO: update to CustomEvent
   openImage(id){
     return (()=>{
       Router.go("/view/"+encodeURI(id));
