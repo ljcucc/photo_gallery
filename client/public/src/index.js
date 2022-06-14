@@ -94,6 +94,7 @@ class App extends LitElement {
   }
 
   openUploader(){
+    console.log("upload")
     let root = this.shadowRoot;
     let upload = root.querySelector("upload-dialog"); 
     upload.openDialog();
