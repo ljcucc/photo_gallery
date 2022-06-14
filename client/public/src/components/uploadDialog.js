@@ -40,7 +40,15 @@ class UploadDialog extends LitElement{
     if(this.opened) return;
     this.opened = true;
 
-    console.log(e);
+    if (e.dataTransfer.items) {
+      // Use DataTransferItemList interface to access the file(s)
+      for (let i = 0; i < e.dataTransfer.items.length; i++) {
+        // If dropped items aren't files, reject them
+        if (e.dataTransfer.items[i].kind != 'file') {
+          return;
+        }
+      }
+    }
 
     let root = this.shadowRoot;
     let dialog = root.querySelector("dialog");
