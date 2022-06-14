@@ -6,6 +6,7 @@
 
 */
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import { classMap } from 'https://unpkg.com/lit-html/directives/class-map'; // origin: lit-html/directives/class-map 
 
 import "./icons.js";
 import "./SearchBar.js";
@@ -13,20 +14,24 @@ import "./drawer.js";
 import "./DropMenu.js";
 
 class Appbar extends LitElement{
+  static properties = {
+    gradiant:{ type: Boolean },
+    search: { type: Boolean },
+    noBlur: { type: Boolean },
+    fixed: { type: Boolean },
+  };
 
   static styles = css`
     .topbar{
+      --shadow-color: rgba(0, 0, 0, 0.35);
+      --background: rgba(255,255,255, 0.95);
       min-height: 60px;
       top: 0;
       left: 0;
       right: 0;
       position: sticky;
 
-      border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-      background: rgba(255,255,255, 0.95);
-
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background:var(--background) ;
 
       padding: 0 1rem;
 
@@ -34,6 +39,24 @@ class Appbar extends LitElement{
       flex-direction: row;
 
       align-items:center;
+    }
+
+    .blur{
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .gradiant{
+      --shadow-color:rgba(0,0,0,0);
+      --background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);;
+    }
+
+    .noGradiant{
+      border-bottom: 1px solid var(--shadow-color);
+    }
+
+    .fixed{
+      position: fixed !important;
     }
 
     /* .menu-button{
@@ -73,15 +96,25 @@ class Appbar extends LitElement{
 
   constructor(){
     super();
+
+    this.gradiant = false;
+    this.search = false;
+    this.noBlur = false;
+    this.fixed = false;
   }
 
   render(){
     return html`
-      <div class="topbar">
+      <div class="topbar ${classMap({
+        gradiant: this.gradiant,
+        blur: !this.noBlur,
+        noGradiant: !this.gradiant,
+        fixed: this.fixed
+      })}">
         <slot name="left"></slot>
 
         <span class="item__end"></span>
-        <search-bar style="flex: 1;"></search-bar>
+        ${this.search?html`<search-bar style="flex: 1;"></search-bar>`:""}
 
         <slot name="right"></slot> 
       </div>

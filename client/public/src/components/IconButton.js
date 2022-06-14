@@ -1,8 +1,10 @@
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import { classMap } from 'https://unpkg.com/lit-html/directives/class-map'; // origin: lit-html/directives/class-map 
 
 class IconButton extends LitElement{
   static properties = {
-    name: {type: String}
+    name: {type: String},
+    dark: {type: Boolean}
   };
 
   static styles = css`
@@ -28,6 +30,10 @@ class IconButton extends LitElement{
       -webkit-tap-highlight-color: rgba(0,0,0,0);
     }
 
+    .dark{
+      color: white !important;
+    }
+
     .menu-button:hover{
       background-color: rgba(0,0,0,0.15);
     }
@@ -35,11 +41,20 @@ class IconButton extends LitElement{
     .menu-button:active{
       background-color: rgba(0,0,0,0.35);
     }
+
+    .menu-button.dark:hover{
+      background-color: rgba(255,2552,255,.15) !important;
+    }
+
+    .menu-button.dark:active{
+      background-color: rgba(255,255,255,.35) !important;
+    }
   `;
 
   constructor(){
     super();
     this.name = ""; // default value
+    this.dark = false;
   }
 
   onClick(){
@@ -49,8 +64,10 @@ class IconButton extends LitElement{
 
   render(){
     return html`
-      <div class="menu-button" @click="${this.onClick}">
-        <material-icons name="${this.name}">${this.name}</material-icons>
+      <div class="menu-button${classMap({
+        dark:this.dark
+      })}" @click="${this.onClick}">
+        <material-icons color="${this.dark? "white": "black"}" name="${this.name}">${this.name}</material-icons>
       </div>
     `;
   }

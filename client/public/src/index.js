@@ -65,10 +65,16 @@ class App extends LitElement {
     super();
   }
 
-  firstUpdated() {
-    let root = this.shadowRoot;
+  // render website layout
+  render() {
+    return html` 
+      <router-outlet></router-outlet>
+      <!-- App bar -->
+    `;
   }
+}
 
+class AppHomeOutlet extends LitElement{
   openMenu(){
     let root = this.shadowRoot;
     let dropMenu = root.querySelector("drop-menu");
@@ -106,12 +112,10 @@ class App extends LitElement {
     upload.openDialog();
   }
 
-  // render website layout
-  render() {
+  render(){
     return html`
-      <!-- App bar -->
       <upload-dialog>
-      <app-topbar>
+      <app-topbar search>
         <appbar-items slot="left">
           <icon-button name="menu" @click="${this.openDrawer}"></icon-button>
           <appbar-title title="Public Photos"></appbar-title>
@@ -147,10 +151,10 @@ class App extends LitElement {
       </app-topbar>
 
       <!-- dialogs -->
-      <login-dialog></login-dialog>
       <info-dialog id="about-dialog" title="Welcome!">
         This project is an open source project, you can find it here: <a href="https://github.com/ljcucc/photo_gallery" target="_blank" rel="noopener noreferrer">https://github.com/ljcucc/photo_gallery</a>
       </info-dialog>
+      <login-dialog></login-dialog>
 
       <!-- fixed components -->
       <unusable-warning></unusable-warning>
@@ -176,9 +180,7 @@ class App extends LitElement {
           Settings
         </drawer-item>
       </app-drawer>
-
-      <router-outlet></router-outlet>
-
+      <slot></slot>
       </upload-dialog>
     `;
   }
@@ -209,8 +211,10 @@ class RouterOutlet extends LitElement{
 class AppHome extends LitElement{
   render(){
     return html`
+    <app-home-outlet>
       <project-banner></project-banner>
       <photos-grid route="home"></photos-grid>
+    </app-home-outlet>
     `;
   }
 }
@@ -219,3 +223,4 @@ class AppHome extends LitElement{
 customElements.define("app-root", App);
 customElements.define("app-home", AppHome);
 customElements.define("router-outlet", RouterOutlet);
+customElements.define("app-home-outlet", AppHomeOutlet);
