@@ -32,7 +32,7 @@ class ImageView extends LitElement{
     return html`
     <div class="body">
       
-      <img src="https://picsum.photos/seed/${item+200}/1080/720?grayscale" alt="" />
+      <img src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
     </div>
     `;
   }

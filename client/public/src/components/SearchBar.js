@@ -108,10 +108,12 @@ class SearchBar extends LitElement{
           })}" style="${styleMap({
           display: this.toggled? "": "none"
         })}" name="close" @click="${this.closeSearch}"></icon-button>
-        <input type="text" placeholder="Places, People, Things... " style="${styleMap({
-          width: this.inputWidth,
-          display: this.toggled? "": "none"
-        })}" required/>
+        <form action="submit">
+          <input type="text" placeholder="Places, People, Things... " style="${styleMap({
+            width: this.inputWidth,
+            display: this.toggled ? "" : "none"
+          })}" required/>
+        </form>
         <icon-button name="search" @click="${this.openSearch}" class="search-icon ${
           classMap({
             toggled: this.toggled
