@@ -148,7 +148,7 @@ class UploadDialog extends LitElement{
         <div class="file-upload">
           <h2>Upload file</h2>
           <p>drop file here to upload</p>
-          ${this.filename}
+          ${this.filename} ${this.filename == "" ? "": "Uploading (unfinish)"}
         </div>
       </dialog>
     </div>
