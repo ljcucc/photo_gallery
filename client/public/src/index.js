@@ -22,6 +22,7 @@ import "./ProjectBanner.js";
 import "./components/UnusableWarning.js";
 import "./components/FloatButton.js";
 import "./components/uploadDialog.js";
+import "./ImageView.js";
 
 let isLocalhost = ()=>location.hostname == "localhost" || location.hostname == "127.0.0.1"
 
@@ -147,10 +148,12 @@ class App extends LitElement {
 
       <!-- dialogs -->
       <login-dialog></login-dialog>
+      <info-dialog id="about-dialog" title="Welcome!">
+        This project is an open source project, you can find it here: <a href="https://github.com/ljcucc/photo_gallery" target="_blank" rel="noopener noreferrer">https://github.com/ljcucc/photo_gallery</a>
+      </info-dialog>
 
       <!-- fixed components -->
       <unusable-warning></unusable-warning>
-      <project-banner></project-banner>
       <float-icon-button name="upload" @click="${this.openUploader}"></float-icon-button>
       <app-drawer>
         <drawer-title>
@@ -161,7 +164,9 @@ class App extends LitElement {
             Gallery for <del>everyone</del> myself.
           </span>
         </drawer-title>
-        <drawer-item selected="false">
+        <drawer-item selected="false" @click="${()=>{
+          Router.go('/');
+        }}">
           Home
         </drawer-item>
         <drawer-item @click="${()=>alert("feature unfinish")}">
@@ -179,13 +184,15 @@ class App extends LitElement {
   }
 }
 
+export var router;
+
 class RouterOutlet extends LitElement{
   constructor(){
     super();
   }
 
   firstUpdated(){
-    const router = new Router(this);
+    router = new Router(this);
     router.setRoutes([
       {path: "/", component: 'app-home'},
       {path: "/view/:id", component: 'image-view'}
@@ -202,12 +209,8 @@ class RouterOutlet extends LitElement{
 class AppHome extends LitElement{
   render(){
     return html`
-      <info-dialog id="about-dialog" title="Welcome!">
-        This project is an open source project, you can find it here: <a href="https://github.com/ljcucc/photo_gallery" target="_blank" rel="noopener noreferrer">https://github.com/ljcucc/photo_gallery</a>
-      </info-dialog>
-      <photos-grid route="home" @click="${()=>{
-        Router.go('/view/test');
-      }}"></photos-grid>
+      <project-banner></project-banner>
+      <photos-grid route="home"></photos-grid>
     `;
   }
 }

@@ -1,4 +1,5 @@
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
+import { Router } from "https://unpkg.com/@vaadin/router@1.7.4/dist/vaadin-router.js";
 
 // I REALLY NEED GIRD CONTINAER IN CSS, THIS FLEX GRID IS SHIT
 
@@ -102,12 +103,18 @@ class PhotosGrid extends LitElement{
     this.page ++;
   }
 
+  openImage(id){
+    return (()=>{
+      Router.go("/view/"+encodeURI(id));
+    });
+  }
+
   render(){
     return html`
     <div class="boxes">
       ${Array.from(Array(this.page*50).keys()).map(item=>
         // html`<img class="box" src="/api/images/thumbnail/demo.jpg"/>`
-        html`<img class="box" src="https://picsum.photos/seed/${item+200}/300/350?grayscale"/>`
+        html`<img class="box" @click="${this.openImage(item)}" src="https://picsum.photos/seed/${item+200}/300/350?grayscale"/>`
       )}
     </div>
     <div class="more">
