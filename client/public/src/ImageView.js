@@ -2,6 +2,7 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/
 import {router} from './index.js';
 import { Router } from "https://unpkg.com/@vaadin/router@1.7.4/dist/vaadin-router.js";
 import { styleMap } from 'https://unpkg.com/lit-html/directives/style-map'; // origin: lit-html/directives/style-map 
+import { ImageListModel } from './images.js';
 
 class ImageView extends LitElement{
   static properties = {
@@ -69,6 +70,7 @@ class ImageView extends LitElement{
   }
 
   render(){
+    let model = new ImageListModel();
     if(router){
       var item = router.location.params.id;
     }
@@ -110,7 +112,7 @@ class ImageView extends LitElement{
       <div class="image-container">
         <img style="${styleMap({
           "--scale":this.scale
-        })}" src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
+        })}" src="${model.getImageURL( model.getImageData(item) )}" alt="" />
       </div>
     </div>
     `;

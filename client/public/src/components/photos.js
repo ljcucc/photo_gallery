@@ -87,35 +87,49 @@ class PhotosGrid extends LitElement{
   constructor(){
     super();
 
+    // default values
     this.page = 1;
+    this.photos = [];
   }
 
   static properties = {
-    page: { type: Number }
+    page: { type: Number },
+    photos: {type: Array}
   }
 
   hasChanged(){
     console.log(this.page);
   }
 
+  setImages(images){
+    this.photos = images;
+    // this.requestUpdate();
+  }
+
   loadPage(){
-    console.log("loading");
-    this.page ++;
+    console.log("PhotosGrid: loadPage");
+    // this.page ++;
+    const event = new CustomEvent('load-more');
+    this.dispatchEvent(event);
   }
 
   // TODO: update to CustomEvent
-  openImage(id){
+  openImage(photo){
     return (()=>{
-      Router.go("/view/"+encodeURI(id));
+      const event = new CustomEvent('item-click', {
+        detail: { id:  photo.id }
+      });
+      this.dispatchEvent(event);
     });
   }
 
   render(){
+    console.log(this.photos)
     return html`
     <div class="boxes">
-      ${Array.from(Array(this.page*50).keys()).map(item=>
+      ${this.photos.map(item=>
         // html`<img class="box" src="/api/images/thumbnail/demo.jpg"/>`
-        html`<img class="box" @click="${this.openImage(item)}" src="https://picsum.photos/seed/${item}/300/350?grayscale"/>`
+        html`<img class="box" @click="${this.openImage(item)}" src="${item.imageURL}"/>`
       )}
     </div>
     <div class="more">

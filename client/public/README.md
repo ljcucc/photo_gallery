@@ -26,6 +26,39 @@ Folder structure:
 
 Web Components are reusable since the web components are treated like native elements to browser. So with the dependencies (in this repo dependencies are resolved by using CDNs, no worries to handle it with yourself by using resolving tools), you can directly using these web component on your website.
 
+## PhotoGrid
+
+import:
+
+```js
+import "./components/photos.js";
+```
+
+usage: 
+
+```html
+  <photos-grid route="home" @item-click="..." @load-more="..."></photos-grid>
+```
+
+> `@event` means `addEventListener("event", ...)` in [Lit](lit.dev)
+
+when a item cliked, `item-click` event will dispatch, and given a id of that image.
+
+To set images of `photos-grid`, try use `setImages(data)`, which data is a array with datas.
+
+data format:
+
+```json
+[
+  {
+    "imageURL": "image's URL",
+    "id": "id when item click will callbacked"
+  },
+  ...
+]
+```
+
+
 ## Appbar
 
 file: `appbar.js`

@@ -24,35 +24,17 @@ import "./components/FloatButton.js";
 import "./components/uploadDialog.js";
 import "./ImageView.js";
 
+import {ImageListModel} from "./images.js";
+
 // const enableServiceWorker = !isLocalhost();
 
-// if (enableServiceWorker) {
-//   // working with service-worker in order to make PWA installation works
-//   window.addEventListener('load', () => {
-//     async function registerSW() {
-//       if ('serviceWorker' in navigator) {
-//         try {
-//           await navigator.serviceWorker.register('./service-worker.js');
-//         } catch (e) {
-//           console.log('ServiceWorker registration failed. Sorry about that.', e);
-//         }
-//       } else {
-//         console.log('Your browser does not support ServiceWorker.');
-//       }
-//     }
-//     registerSW();
-//   });
-// }
-
-
-// >>> Polyfills START
+// Polyfills
 if (!window.URLPattern) {
   const { URLPattern } = await import("https://cdn.jsdelivr.net/npm/urlpattern-polyfill@5.0.3/dist/urlpattern.js");
   window.URLPattern = URLPattern;
 } else {
   console.log("Polyfill: URLPattern exists!")
 }
-// <<< Polyfills END
 
 // app-root compoment
 class App extends LitElement {
@@ -204,11 +186,46 @@ class RouterOutlet extends LitElement{
 }
 
 class AppHome extends LitElement{
+  model = new ImageListModel;
+  
+  static properties = {
+    images: { type: Array }
+  }
+
+  constructor(){
+    super();
+
+    this.images = [];
+  }
+
+  firstUpdated(){
+    console.log("firstload")
+    this.onLoadMore();
+  }
+
+  onLoadMore(){
+    let root = this.shadowRoot;
+    let photosGrid = root.querySelector("photos-grid");
+
+    this.model.loadMore()
+    .then((data)=>{
+      console.log(data);
+      this.images = data.map((item)=>{
+        item.imageURL=this.model.getThumbnailURL(item)
+        return item
+      });
+      photosGrid.setImages(this.images);
+    });
+  }
+
   render(){
     return html`
     <app-home-outlet>
       <project-banner></project-banner>
-      <photos-grid route="home"></photos-grid>
+      <photos-grid route="home" @item-click="${e=>{
+        Router.go("/view/" + encodeURI(e.detail.id));
+      }}"
+      @load-more="${this.onLoadMore}"></photos-grid>
     </app-home-outlet>
     `;
   }
