@@ -102,8 +102,12 @@ class PhotosGrid extends LitElement{
   }
 
   setImages(images){
+    let forcedUpdate = this.photos == images;
+
     this.photos = images;
-    // this.requestUpdate();
+
+    if(forcedUpdate)
+      this.requestUpdate();
   }
 
   loadPage(){
