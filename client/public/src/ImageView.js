@@ -80,7 +80,7 @@ class ImageView extends LitElement{
             this.scrollingBack = true;
             setTimeout(() => {
               window.history.back();
-            }, 150);
+            }, 350);
           }}"></icon-button>
         </appbar-items>
 
