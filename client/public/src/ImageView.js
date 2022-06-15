@@ -22,7 +22,7 @@ class ImageView extends LitElement{
     object-fit: cover;
     max-width: 100vw;
     width: 100%;
-    max-height: 100vh;
+    height: 100vh;
   }
 
   .body{
@@ -30,6 +30,15 @@ class ImageView extends LitElement{
     height: 100vh;
     overflow: hidden;
     background: black;
+  }
+
+  .image-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
   }
   `;
 
@@ -70,7 +79,7 @@ class ImageView extends LitElement{
           </drop-menu>
         </appbar-items>
       </app-topbar>
-      <div>
+      <div class="image-container">
         <img src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
       </div>
     </div>
