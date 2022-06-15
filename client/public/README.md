@@ -20,3 +20,107 @@ Folder structure:
   * `SettingsView.js`: Settings page
   * `login.js`: login dialog
   * `ProjectBanner.js`: Project infomation banner
+
+## Appbar Components
+
+file: `appbar.js`
+
+* `app-topbar`: appbar main component
+* `appbar-title`: title for appbar
+* `appbar-items`: container to place icon buttons or appbar items
+
+Basic appbar with title:
+
+```html
+<app-topbar>
+  <appbar-items slot="left">
+    <appbar-title title="Appbar example"></appbar-title>
+  </appbar-items>
+  <appbar-items slot="right">
+    <!-- things at the right -->
+  </appbar-items>
+</app-topbar>
+```
+
+A appbar with search button at the left:
+```html
+<app-topbar search>
+  <appbar-items slot="left">
+    <appbar-title title="Appbar example"></appbar-title>
+  </appbar-items>
+  <appbar-items slot="right">
+    <!-- things at the right -->
+  </appbar-items>
+</app-topbar>
+```
+
+A appbar that using on a transparant background (search is not avaliable):
+
+```html
+<app-topbar gradiant>
+  <appbar-items slot="left">
+    <appbar-title title="Appbar example"></appbar-title>
+  </appbar-items>
+  <appbar-items slot="right">
+    <!-- things at the right -->
+  </appbar-items>
+</app-topbar>
+```
+
+A fixed appbar:
+
+```html
+<app-topbar>
+  <appbar-items slot="left">
+    <appbar-title title="Appbar example"></appbar-title>
+  </appbar-items>
+  <appbar-items slot="right">
+    <!-- things at the right -->
+  </appbar-items>
+</app-topbar>
+```
+
+A appbar with drawer and dropdown menu:
+
+```js
+class App extends LitElement{
+
+  openDrawer(){
+    let root = this.shadowRoot;
+    let drawer = root.querySelector("app-drawer");
+
+    drawer.openDrawer();
+  }
+
+  openMenu(){
+    let root = this.shadowRoot;
+    let dropMenu = root.querySelector("drop-menu");
+
+    dropMenu.toggleMenu();
+  }
+
+  render(){
+    return html`
+      <app-drawer>
+      </app-drawer>
+
+      <app-topbar>
+        <appbar-items slot="left">
+          <icon-button name="menu" @click="${this.openDrawer}"></icon-button>
+          <appbar-title title="Appbar example"></appbar-title>
+        </appbar-items>
+        <appbar-items slot="right">
+          <icon-button name="more_vert" @click="${this.openMenu}"></icon-button>
+
+          <drop-menu>
+            <dropmenu-list @item-click="${this.handleMenuClick}" list="Login,Signup;split,Source Code,Home site;split,Settings,About" >
+            </dropmenu-list>
+          </drop-menu>
+        </appbar-items>
+      </app-topbar>
+
+      something...
+    `;
+  }
+}
+```

@@ -64,6 +64,7 @@ class App extends LitElement {
   render() {
     return html` 
       <router-outlet></router-outlet>
+      <unusable-warning></unusable-warning>
       <!-- App bar -->
     `;
   }
@@ -152,7 +153,6 @@ class AppHomeOutlet extends LitElement{
       <login-dialog></login-dialog>
 
       <!-- fixed components -->
-      <unusable-warning></unusable-warning>
       <float-icon-button name="upload" @click="${this.openUploader}"></float-icon-button>
       <app-drawer>
         <drawer-title>

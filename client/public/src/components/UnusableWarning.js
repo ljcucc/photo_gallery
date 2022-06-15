@@ -42,7 +42,7 @@ class UnusableWarning extends LitElement{
       color: black;
     }
 
-    @media only screen and (max-width: 350px),(max-height: 400px){
+    @media only screen and (max-width: 200px),(max-height: 250px){
       .container{
         display: flex;
       }
