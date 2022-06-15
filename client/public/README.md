@@ -63,7 +63,28 @@ data format:
 ]
 ```
 
-here's a example:
+here's a example by using native APIs:
+
+```html
+<photos-grid></photos-grid>
+<script type="module">
+import "./components/photos.js";
+import "./your-data.js"; // a data model that can fetch images.
+
+let photosGrid = root.querySelector("photos-grid"); // select view
+let loadMore = ()=>getDatas().then(photosGrid.setImages);
+
+photosGrid.addEventListener("item-click", e=>{
+  let id = e.detail.id;
+  alert(`items ${id} was clicked!`);
+});
+
+photosGrid.addEventListener("load-more", loadMore);
+window.addEventListener("load", loadMore);
+</script>
+```
+
+here's a example with Lit:
 
 ```js
 class AppHome extends LitElement{
@@ -84,7 +105,7 @@ class AppHome extends LitElement{
 
   render(){
     return html`
-      <photos-grid route="home" @item-click="${e=>{
+      <photos-grid @item-click="${e=>{
         Router.go("/view/" + encodeURI(e.detail.id)); // goto /view/:id when clicked a image
       }}"
       @load-more="${this.onLoadMore}"></photos-grid>
