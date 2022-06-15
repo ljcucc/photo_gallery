@@ -47,6 +47,8 @@ usage:
 
 when a item clicked, `item-click` event will dispatch, and given a id of that image.
 
+photosGrid will request more image if needed. if does, `load-more` event will dispatched.
+
 To set images of `photos-grid`, try use `setImages(data)`, which data is a array with datas.
 
 data format:
