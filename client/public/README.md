@@ -109,7 +109,7 @@ class App extends LitElement{
     dropMenu.toggleMenu();
   }
 
-  handleMenuClick(){
+  handleMenuClick(e){
     const id = e.detail?.id || "id not found";
     alert(id);
   }
