@@ -68,4 +68,4 @@ class SettingsView extends LitElement{
   }
 }
 
-customElements.define("image-view", ImageView);
+customElements.define("settings-view", SettingsView);

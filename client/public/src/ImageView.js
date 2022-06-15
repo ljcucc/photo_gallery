@@ -14,14 +14,21 @@ class ImageView extends LitElement{
 
   static styles = css`
   img{
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+
     object-fit: cover;
+    max-width: 100vw;
     width: 100%;
-    height: 100%;
+    max-height: 100vh;
   }
 
   .body{
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     background: black;
   }
   `;
@@ -42,7 +49,8 @@ class ImageView extends LitElement{
       <app-topbar gradiant noBlur fixed>
         <appbar-items slot="left">
           <icon-button dark name="arrow_back" @click="${()=>{
-            Router.go("/");
+            // Router.go("/");
+            window.history.back();
           }}"></icon-button>
         </appbar-items>
 
@@ -62,7 +70,9 @@ class ImageView extends LitElement{
           </drop-menu>
         </appbar-items>
       </app-topbar>
-      <img src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
+      <div>
+        <img src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
+      </div>
     </div>
     `;
   }
