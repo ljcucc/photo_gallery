@@ -1,15 +1,18 @@
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js';
 import {router} from './index.js';
 import { Router } from "https://unpkg.com/@vaadin/router@1.7.4/dist/vaadin-router.js";
+import { styleMap } from 'https://unpkg.com/lit-html/directives/style-map'; // origin: lit-html/directives/style-map 
 
 class ImageView extends LitElement{
   static properties = {
-    name: {type: String}
+    name: {type: String},
+    scale: {type: Number}
   };
 
   constructor(){
     super();
     this.name = ""; // default value
+    this.scale = 1;
   }
 
   static styles = css`
@@ -40,6 +43,16 @@ class ImageView extends LitElement{
     width: 100vw;
     height: 100vh;
   }
+
+  .image-container>img{
+    --scale: 1;
+    /* transform: scale(var(--scale)); */
+    transition: all 0.25s;
+    width:calc( var(--scale) * 100% );
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+  }
   `;
 
   openMenu(){
@@ -64,8 +77,12 @@ class ImageView extends LitElement{
         </appbar-items>
 
         <appbar-items slot="right">
-          <icon-button dark name="zoom_in"></icon-button>
-          <icon-button dark name="zoom_out"></icon-button>
+          <icon-button dark name="zoom_in" @click="${()=>{
+            this.scale /= 0.5;
+          }}"></icon-button>
+          <icon-button dark name="zoom_out" @click="${()=>{
+            this.scale *= 0.5;
+          }}"></icon-button>
           <icon-button dark name="more_vert" @click="${this.openMenu}"></icon-button>
           <drop-menu>
             <dropmenu-list @item-click="${((e)=>{
@@ -80,7 +97,9 @@ class ImageView extends LitElement{
         </appbar-items>
       </app-topbar>
       <div class="image-container">
-        <img src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
+        <img style="${styleMap({
+          "--scale":this.scale
+        })}" src="https://picsum.photos/seed/${item}/1080/720?grayscale" alt="" />
       </div>
     </div>
     `;

@@ -39,6 +39,7 @@ class Appbar extends LitElement{
       flex-direction: row;
 
       align-items:center;
+      z-index: 1000;
     }
 
     .blur{
