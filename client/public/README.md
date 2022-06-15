@@ -71,7 +71,7 @@ here's a example by using native APIs:
 import "./components/photos.js";
 import "./your-data.js"; // a data model that can fetch images.
 
-let photosGrid = window.querySelector("photos-grid"); // select view
+let photosGrid = document.querySelector("photos-grid"); // select view
 let loadMore = ()=>getDatas().then(photosGrid.setImages);
 
 photosGrid.addEventListener("item-click", e=>{
