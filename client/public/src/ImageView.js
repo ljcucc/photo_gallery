@@ -6,13 +6,15 @@ import { styleMap } from 'https://unpkg.com/lit-html/directives/style-map'; // o
 class ImageView extends LitElement{
   static properties = {
     name: {type: String},
-    scale: {type: Number}
+    scale: {type: Number},
+    scrollingBack: {type: Boolean}
   };
 
   constructor(){
     super();
     this.name = ""; // default value
     this.scale = 1;
+    this.scrollingBack = false;
   }
 
   static styles = css`
@@ -33,6 +35,7 @@ class ImageView extends LitElement{
     height: 100vh;
     overflow: hidden;
     background: black;
+    transition: margin-left 0.35s;
   }
 
   .image-container{
@@ -67,12 +70,17 @@ class ImageView extends LitElement{
       var item = router.location.params.id;
     }
     return html`
-    <div class="body">
+    <div class="body" style="${styleMap({
+      marginLeft: this.scrollingBack ? "100%": 0
+    })}">
       <app-topbar gradiant noBlur fixed>
         <appbar-items slot="left">
           <icon-button dark name="arrow_back" @click="${()=>{
             // Router.go("/");
-            window.history.back();
+            this.scrollingBack = true;
+            setTimeout(() => {
+              window.history.back();
+            }, 150);
           }}"></icon-button>
         </appbar-items>
 
