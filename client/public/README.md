@@ -1,5 +1,7 @@
 # Static site resources
 
+> All files are not bundled or compress, file will directly deliver from server to client.
+
 Folder structure:
 
 * `index.html`: Homepage
