@@ -39,7 +39,7 @@ import & installation:
 import "./components/appbar.js";
 ```
 
-Basic appbar with title:
+Basic appbar with title (the basic appbar comes with sticky position):
 
 ```html
 <app-topbar>
@@ -80,7 +80,7 @@ A appbar that using on a transparant background (search is not avaliable):
 A fixed appbar:
 
 ```html
-<app-topbar>
+<app-topbar fixed>
   <appbar-items slot="left">
     <appbar-title title="Appbar example"></appbar-title>
   </appbar-items>
