@@ -13,7 +13,7 @@ class ImageView extends LitElement{
   constructor(){
     super();
     this.name = ""; // default value
-    this.scale = 1;
+    this.scale = 0.7;
     this.scrollingBack = false;
   }
 
@@ -45,13 +45,15 @@ class ImageView extends LitElement{
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    overflow: scroll;
   }
 
   .image-container>img{
     --scale: 1;
-    /* transform: scale(var(--scale)); */
+    transform: scale(var(--scale));
     transition: all 0.25s;
-    width:calc( var(--scale) * 100% );
+    /* width:calc( var(--scale) * 100% ); */
+    width: 100%;
     height: auto;
     box-sizing: border-box;
     position: relative;
