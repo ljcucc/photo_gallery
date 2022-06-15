@@ -26,7 +26,10 @@ Folder structure:
 
 Web Components are reusable since the web components are treated like native elements to browser. So with the dependencies (in this repo dependencies are resolved by using CDNs, no worries to handle it with yourself by using resolving tools), you can directly using these web component on your website.
 
-## PhotoGrid
+* [Appbar](#Appbar)
+* [PhotosGrid](#PhotosGrid)
+
+## PhotosGrid
 
 import:
 
