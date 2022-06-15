@@ -58,6 +58,36 @@ data format:
 ]
 ```
 
+here's a example:
+
+```js
+class AppHome extends LitElement{
+  model = new DataMode(); // data model
+
+  firstUpdated(){
+    this.onLoadMore(); // first load
+  }
+
+  onLoadMore(){
+    let root = this.shadowRoot;
+    let photosGrid = root.querySelector("photos-grid"); // select view
+
+    this.model.loadMore() // fetch data by using model
+      .then(photosGrid.setImages); // when data is finished, given to photosGrid which will auto update
+    });
+  }
+
+  render(){
+    return html`
+      <photos-grid route="home" @item-click="${e=>{
+        Router.go("/view/" + encodeURI(e.detail.id)); // goto /view/:id when clicked a image
+      }}"
+      @load-more="${this.onLoadMore}"></photos-grid>
+    `;
+  }
+}
+```
+
 
 ## Appbar
 
