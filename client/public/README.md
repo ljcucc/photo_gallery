@@ -45,7 +45,7 @@ usage:
 
 > `@event` means `addEventListener("event", ...)` in [Lit](lit.dev)
 
-when a item cliked, `item-click` event will dispatch, and given a id of that image.
+when a item clicked, `item-click` event will dispatch, and given a id of that image.
 
 To set images of `photos-grid`, try use `setImages(data)`, which data is a array with datas.
 
