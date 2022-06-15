@@ -21,7 +21,9 @@ Folder structure:
   * `login.js`: login dialog
   * `ProjectBanner.js`: Project infomation banner
 
-## Appbar Components
+# Reusable Components
+
+## Appbar
 
 file: `appbar.js`
 
