@@ -23,6 +23,8 @@ Folder structure:
 
 # Reusable Components
 
+Web Components are reusable since the web components are treated like native elements to browser. So with the dependencies (in this repo dependencies are resolved by using CDNs, no worries to handle it with yourself by using resolving tools), you can directly using these web component on your website.
+
 ## Appbar
 
 file: `appbar.js`
@@ -30,6 +32,12 @@ file: `appbar.js`
 * `app-topbar`: appbar main component
 * `appbar-title`: title for appbar
 * `appbar-items`: container to place icon buttons or appbar items
+
+import & installation:
+
+```js
+import "./components/appbar.js";
+```
 
 Basic appbar with title:
 
