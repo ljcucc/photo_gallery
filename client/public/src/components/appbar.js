@@ -19,6 +19,7 @@ class Appbar extends LitElement{
     search: { type: Boolean },
     noBlur: { type: Boolean },
     fixed: { type: Boolean },
+    relative: { type: Boolean },
   };
 
   static styles = css`
@@ -59,6 +60,10 @@ class Appbar extends LitElement{
 
     .fixed{
       position: fixed !important;
+    }
+
+    .relative{
+      position: absolute !important;
     }
 
     /* .menu-button{
@@ -111,7 +116,8 @@ class Appbar extends LitElement{
         gradiant: this.gradiant,
         blur: !this.noBlur,
         noGradiant: !this.gradiant,
-        fixed: this.fixed
+        fixed: this.fixed,
+        relative: this.relative
       })}">
         <slot name="left"></slot>
 

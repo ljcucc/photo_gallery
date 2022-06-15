@@ -20,6 +20,7 @@ Folder structure:
   * `SettingsView.js`: Settings page
   * `login.js`: login dialog
   * `ProjectBanner.js`: Project infomation banner
+  * `images.js`: ImageController( using ImageView, ImagesList )
 
 # Reusable Components
 

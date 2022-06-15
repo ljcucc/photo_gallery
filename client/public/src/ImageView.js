@@ -36,6 +36,7 @@ class ImageView extends LitElement{
     overflow: hidden;
     background: black;
     transition: margin-left 0.35s;
+    position: relative;
   }
 
   .image-container{
@@ -75,7 +76,7 @@ class ImageView extends LitElement{
     <div class="body" style="${styleMap({
       marginLeft: this.scrollingBack ? "100%": 0
     })}">
-      <app-topbar gradiant noBlur fixed>
+      <app-topbar gradiant noBlur relative>
         <appbar-items slot="left">
           <icon-button dark name="arrow_back" @click="${()=>{
             // Router.go("/");
