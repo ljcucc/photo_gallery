@@ -1,6 +1,6 @@
 # Photo Gallery - A demo of Lit and Web Comp
 
-This project may be a demo of Web Component, to proof that front-end developement could built without any toolchain, just your keyboard, text editor and browser.
+This project my project for a demo of Web Component, to proof that front-end developement could built without any toolchain, just your keyboard, text editor and browser.
 
 > Because all UIs are made of web comp, all components are reusable for and to other framework and projects.
 
